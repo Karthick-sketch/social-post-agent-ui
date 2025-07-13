@@ -1,0 +1,56 @@
+@if (postGenerated) {
+  <app-post-form [post]="post" (back)="backToGeneratePost()"></app-post-form>
+} @else {
+  <h3 class="section-header">Generate a new Post</h3>
+  <div class="form-row">
+    <label class="form-label">
+      <p class="form-label-text">Brief Content</p>
+      <textarea
+        placeholder="Describe the content of your post"
+        class="form-input form-input-textarea"
+        [(ngModel)]="generatePostModel.brief"
+      ></textarea>
+    </label>
+  </div>
+  <div class="form-row">
+    <label class="form-label">
+      <p class="form-label-text">Company Name</p>
+      <input
+        placeholder="Enter your company name"
+        class="form-input form-input-regular"
+        [(ngModel)]="generatePostModel.brand"
+      />
+    </label>
+  </div>
+  <div class="form-row">
+    <label class="form-label">
+      <p class="form-label-text">Post Tone</p>
+      <select
+        class="form-input form-input-regular form-select"
+        [(ngModel)]="generatePostModel.tone"
+      >
+        @for (tone of tones; track $index) {
+          <option [value]="tone.value">{{ tone.label }}</option>
+        }
+      </select>
+    </label>
+  </div>
+  <div class="form-row">
+    <label class="form-label">
+      <p class="form-label-text">Social Platforms</p>
+      <select
+        class="form-input form-input-regular form-select"
+        [(ngModel)]="platform"
+      >
+        @for (platform of platforms; track $index) {
+          <option [value]="platform.value">{{ platform.label }}</option>
+        }
+      </select>
+    </label>
+  </div>
+  <div class="button-container-right">
+    <button class="button button-primary" (click)="generatePost()">
+      <span class="button-text">Generate</span>
+    </button>
+  </div>
+}

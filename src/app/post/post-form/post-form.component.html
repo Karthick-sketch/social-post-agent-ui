@@ -1,0 +1,57 @@
+@if (isProceeded) {
+  <app-image-suggestion (back)="backToGeneratedPostPage()"></app-image-suggestion>
+} @else {
+  <h3 class="section-header">Generated Content</h3>
+  <div class="tabs-container">
+    <div class="tabs">
+      @for (tab of tabs; track $index) {
+        <button
+          class="tab"
+          [class.active]="isActive(tab)"
+          [class.inactive]="!isActive(tab)"
+          (click)="switchTab(tab)"
+        >
+          <p
+            class="tab-text"
+            [class.active]="isActive(tab)"
+            [class.inactive]="!isActive(tab)"
+          >
+            {{ tab }}
+          </p>
+        </button>
+      }
+    </div>
+  </div>
+  <div class="form-row">
+    <label class="form-label">
+      <textarea
+        class="form-input post-textarea"
+        [class.hide]="!isActive('linkedin')"
+        [(ngModel)]="post.linkedin"
+      ></textarea>
+      <textarea
+        class="form-input post-textarea"
+        [class.hide]="!isActive('instagram')"
+        [(ngModel)]="post.instagram"
+      ></textarea>
+      <textarea
+        class="form-input post-textarea"
+        [class.hide]="!isActive('x/twitter')"
+        [(ngModel)]="post.twitter"
+      ></textarea>
+    </label>
+  </div>
+  <div class="button-container-stretch">
+    <div class="button-group">
+      <button class="button button-secondary" (click)="backToGeneratePage()">
+        <span class="button-text">Back</span>
+      </button>
+      <button class="button button-secondary" (click)="savePost()">
+        <span class="button-text">Save</span>
+      </button>
+      <button class="button button-primary" (click)="proceed()">
+        <span class="button-text">Proceed</span>
+      </button>
+    </div>
+  </div>
+}

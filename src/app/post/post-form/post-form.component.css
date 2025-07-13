@@ -1,0 +1,172 @@
+h3,
+p {
+  margin: 0;
+}
+
+/* Section Headers */
+.section-header {
+  color: #111418;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  padding: 16px 16px 8px 16px;
+}
+
+/* Form Styles */
+.form-row {
+  display: flex;
+  max-width: 480px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  padding: 12px 16px;
+}
+
+.form-label {
+  display: flex;
+  flex-direction: column;
+  min-width: 160px;
+  flex: 1;
+}
+
+.form-input {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex: 1;
+  resize: none;
+  border-radius: 8px;
+  color: #111418;
+  border: 1px solid #dbe0e6;
+  background-color: white;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  outline: 0;
+}
+
+.form-input:focus {
+  outline: 0;
+  border-color: #dbe0e6;
+  box-shadow: 0 0 0 3px rgba(219, 224, 230, 0.5);
+}
+
+.form-input::placeholder {
+  color: #60758a;
+}
+
+.post-textarea {
+  min-width: 58rem;
+  min-height: 20rem;
+}
+
+
+/* Tabs */
+.tabs-container {
+  padding-bottom: 12px;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #dbe0e6;
+  padding: 0 16px;
+  gap: 32px;
+}
+
+.tab {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background-color: transparent;
+  padding: 16px 0 13px 0;
+  text-decoration: none;
+}
+
+.tab.active {
+  border-bottom-color: #111418;
+  color: #111418;
+}
+
+.tab.inactive {
+  color: #60758a;
+}
+
+.tab-text {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.015em;
+}
+
+.tab-text.active {
+  color: #111418;
+}
+
+.tab-text.inactive {
+  color: #60758a;
+}
+
+/* Buttons */
+.button {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 8px;
+  height: 40px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.015em;
+  border: none;
+  min-width: 84px;
+  max-width: 480px;
+}
+
+.button-secondary {
+  background-color: #f0f2f5;
+  color: #111418;
+}
+
+.button-primary {
+  background-color: #0c7ff2;
+  color: white;
+}
+
+.button-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.button-container-right {
+  display: flex;
+  padding: 12px 16px;
+  justify-content: flex-end;
+}
+
+.button-group {
+  display: flex;
+  flex: 1;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+  justify-content: flex-end;
+}
+
+@media (max-width: 480px) {
+  .form-row {
+    max-width: 100%;
+  }
+
+  .tabs {
+    gap: 16px;
+  }
+}

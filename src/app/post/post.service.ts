@@ -17,4 +17,8 @@ export class PostService {
       generatePost
     );
   }
+
+  savePost(post: PostModel) {
+    return this.http.put<PostModel>(`${this.baseUrl}/save-post`, post);
+  }
 }

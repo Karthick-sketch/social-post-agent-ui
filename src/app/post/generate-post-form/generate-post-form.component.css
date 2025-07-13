@@ -1,0 +1,134 @@
+h3,
+p {
+  margin: 0;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 960px;
+  flex: 1;
+}
+
+/* Section Headers */
+.section-header {
+  color: #111418;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  padding: 16px 16px 8px 16px;
+}
+
+/* Form Styles */
+.form-row {
+  display: flex;
+  max-width: 480px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  padding: 12px 16px;
+}
+
+.form-label {
+  display: flex;
+  flex-direction: column;
+  min-width: 160px;
+  flex: 1;
+}
+
+.form-label-text {
+  color: #111418;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  padding-bottom: 8px;
+}
+
+.form-input {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex: 1;
+  resize: none;
+  border-radius: 8px;
+  color: #111418;
+  border: 1px solid #dbe0e6;
+  background-color: white;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  outline: 0;
+}
+
+.form-input:focus {
+  outline: 0;
+  border-color: #dbe0e6;
+  box-shadow: 0 0 0 3px rgba(219, 224, 230, 0.5);
+}
+
+.form-input::placeholder {
+  color: #60758a;
+}
+
+.form-input-textarea {
+  min-height: 144px;
+}
+
+.form-input-regular {
+  height: 56px;
+}
+
+.form-select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724px%27 height=%2724px%27 fill=%27rgb(96,117,138)%27 viewBox=%270 0 256 256%27%3e%3cpath d=%27M181.66,170.34a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-48-48a8,8,0,0,1,11.32-11.32L128,212.69l42.34-42.35A8,8,0,0,1,181.66,170.34Zm-96-84.68L128,43.31l42.34,42.35a8,8,0,0,0,11.32-11.32l-48-48a8,8,0,0,0-11.32,0l-48,48A8,8,0,0,0,85.66,85.66Z%27%3e%3c/path%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 24px;
+}
+
+/* Buttons */
+.button {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 8px;
+  height: 40px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.015em;
+  border: none;
+  min-width: 84px;
+  max-width: 480px;
+}
+
+.button-secondary {
+  background-color: #f0f2f5;
+  color: #111418;
+}
+
+.button-primary {
+  background-color: #0c7ff2;
+  color: white;
+}
+
+.button-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.button-container-right {
+  display: flex;
+  padding: 12px 16px;
+  justify-content: flex-end;
+}
+
+@media (max-width: 480px) {
+  .form-row {
+    max-width: 100%;
+  }
+}
