@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { PostModel } from './model/post.model';
 import { GeneratePostModel } from './model/generate-post.model';
 import { ImageModel } from './model/image.model';
+import { ScheduleModel } from './model/schedule.model';
+import { Platform } from './enum/platform.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -31,5 +33,13 @@ export class PostService {
     return this.http.get<ImageModel[]>(
       `${this.baseUrl}/suggest-images/${post_id}?page=${pageSize}`,
     );
+  }
+
+  getPlatforms(post_id: number) {
+    return this.http.get<Platform[]>(`${this.baseUrl}/platforms/${post_id}`);
+  }
+
+  schedulePost(post_id: number, schedule: ScheduleModel) {
+    return this.http.post(`${this.baseUrl}/schedule/${post_id}`, schedule);
   }
 }

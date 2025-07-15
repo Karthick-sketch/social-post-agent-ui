@@ -1,31 +1,38 @@
-<h3 class="section-header">Image Suggestions</h3>
-<div class="image-grid">
-  @for (image of images; track image.id_) {
-    <div class="image-item">
-      <div class="image-square" [style.background-image]="toUrl(image.url)">
-        <label class="container">
-          <input type="checkbox" [(ngModel)]="image.selected"/>
-          <span class="checkmark"></span>
-        </label>
+@if (isProceeded) {
+  <app-schedule-post [post]="post" (back)="backToImagesSuggestPage()"></app-schedule-post>
+} @else {
+  <h3 class="section-header">Image Suggestions</h3>
+  <div class="image-grid">
+    @for (image of images; track image.id_) {
+      <div class="image-item">
+        <div class="image-square" [style.background-image]="toUrl(image.url)">
+          <label class="container">
+            <input type="checkbox" [(ngModel)]="image.selected" />
+            <span class="checkmark"></span>
+          </label>
+        </div>
       </div>
-    </div>
-  }
-</div>
-<div class="button-container-right">
-  <button class="button button-secondary">
-    <span class="button-text">Upload Custom Image</span>
-  </button>
-</div>
-<div class="button-container-stretch">
-  <div class="button-group">
-    <button class="button button-secondary" (click)="backToGeneratedPostPage()">
-      <span class="button-text">Back</span>
-    </button>
-    <button class="button button-secondary" (click)="savePostImages()">
-      <span class="button-text">Save</span>
-    </button>
-    <button class="button button-primary" (click)="proceed()">
-      <span class="button-text">Proceed</span>
+    }
+  </div>
+  <div class="button-container-right">
+    <button class="button button-secondary">
+      <span class="button-text">Upload Custom Image</span>
     </button>
   </div>
-</div>
+  <div class="button-container-stretch">
+    <div class="button-group">
+      <button
+        class="button button-secondary"
+        (click)="backToGeneratedPostPage()"
+      >
+        <span class="button-text">Back</span>
+      </button>
+      <button class="button button-secondary" (click)="savePostImages()">
+        <span class="button-text">Save</span>
+      </button>
+      <button class="button button-primary" (click)="proceed()">
+        <span class="button-text">Proceed</span>
+      </button>
+    </div>
+  </div>
+}

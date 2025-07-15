@@ -3,12 +3,13 @@ import { FormsModule } from '@angular/forms';
 import { PostModel } from '../model/post.model';
 import { PostService } from '../post.service';
 import { ImageModel } from '../model/image.model';
+import { SchedulePostComponent } from '../schedule-post/schedule-post.component';
 
 @Component({
   selector: 'app-image-suggestion',
   templateUrl: './image-suggestion.component.html',
   styleUrl: './image-suggestion.component.css',
-  imports: [FormsModule],
+  imports: [FormsModule, SchedulePostComponent],
 })
 export class ImageSuggestionComponent implements OnInit {
   @Input() post!: PostModel;
@@ -37,6 +38,10 @@ export class ImageSuggestionComponent implements OnInit {
 
   backToGeneratedPostPage() {
     this.back.emit();
+  }
+
+  backToImagesSuggestPage() {
+    this.isProceeded = false;
   }
 
   savePostImages() {

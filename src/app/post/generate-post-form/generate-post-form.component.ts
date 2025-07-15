@@ -14,14 +14,14 @@ import { PostComponent } from '../post-form/post-form.component';
 })
 export class GeneratePostFormComponent {
   postGenerated = false;
-  platform: Platform = Platform.LinkedIn;
+  platform: Platform = Platform.LINKEDIN;
   post = new PostModel();
   generatePostModel = new GeneratePostModel();
 
   platforms = [
-    { value: 'linkedin', label: 'LinkedIn' },
-    { value: 'instagram', label: 'Instagram' },
-    { value: 'twitter', label: 'X/Twitter' },
+    { value: 'LinkedIn', label: 'LinkedIn' },
+    { value: 'Instagram', label: 'Instagram' },
+    { value: 'Twitter', label: 'X/Twitter' },
   ];
   tones = [
     { value: 'professional', label: 'Professional' },

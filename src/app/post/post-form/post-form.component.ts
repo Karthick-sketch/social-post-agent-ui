@@ -40,26 +40,24 @@ export class PostComponent implements OnInit {
   }
 
   switchTab(tab: string) {
-    tab = tab.toLowerCase();
     this.platformTabs.linkedin = false;
     this.platformTabs.instagram = false;
     this.platformTabs.twitter = false;
-    if (tab === Platform.LinkedIn) {
+    if (tab === Platform.LINKEDIN) {
       this.platformTabs.linkedin = true;
-    } else if (tab === Platform.Instagram) {
+    } else if (tab === Platform.INSTAGRAM) {
       this.platformTabs.instagram = true;
-    } else if (tab === 'x/twitter') {
+    } else if (tab === 'X/Twitter') {
       this.platformTabs.twitter = true;
     }
   }
 
   isActive(tab: string) {
-    tab = tab.toLowerCase();
-    if (tab === Platform.LinkedIn) {
+    if (tab === Platform.LINKEDIN) {
       return this.platformTabs.linkedin;
-    } else if (tab === Platform.Instagram) {
+    } else if (tab === Platform.INSTAGRAM) {
       return this.platformTabs.instagram;
-    } else if (tab === 'x/twitter') {
+    } else if (tab === 'X/Twitter') {
       return this.platformTabs.twitter;
     }
     return false;
