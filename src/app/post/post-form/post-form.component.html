@@ -1,5 +1,8 @@
 @if (isProceeded) {
-  <app-image-suggestion (back)="backToGeneratedPostPage()"></app-image-suggestion>
+  <app-image-suggestion
+    [post]="post"
+    (back)="backToGeneratedPostPage()"
+  ></app-image-suggestion>
 } @else {
   <h3 class="section-header">Generated Content</h3>
   <div class="tabs-container">

@@ -78,7 +78,7 @@ export class PostComponent implements OnInit {
   }
 
   proceed() {
-    // this.saveAsDraft();
+    this.savePost();
     this.isProceeded = true;
   }
 }
