@@ -1,5 +1,5 @@
 export class ImageModel {
-  id_!: number;
+  id!: number;
   url!: string;
   selected!: boolean;
 }

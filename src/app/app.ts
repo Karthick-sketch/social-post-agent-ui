@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { PostComponent } from './post/post.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',
-  imports: [PostComponent],
+  imports: [RouterOutlet],
 })
 export class App {}
