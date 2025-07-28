@@ -3,7 +3,7 @@
 } @else {
   <h3 class="section-header">Image Suggestions</h3>
   <div class="image-grid">
-    @for (image of images; track image.id_) {
+    @for (image of images; track image.id) {
       <div class="image-item">
         <div class="image-square" [style.background-image]="toUrl(image.url)">
           <label class="container">

@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PostModel } from '../model/post.model';
 import { PostService } from '../post.service';
 import { Platform } from '../enum/platform.enum';
 import { ImageSuggestionComponent } from '../image-suggestion/image-suggestion.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-form',
@@ -11,10 +12,8 @@ import { ImageSuggestionComponent } from '../image-suggestion/image-suggestion.c
   styleUrl: './post-form.component.css',
   imports: [FormsModule, ImageSuggestionComponent],
 })
-export class PostComponent implements OnInit {
-  @Input() post!: PostModel;
-
-  @Output() back = new EventEmitter<void>();
+export class PostFormComponent implements OnInit {
+  post!: PostModel;
 
   isProceeded = false;
   tabs: string[] = [];
@@ -24,19 +23,30 @@ export class PostComponent implements OnInit {
     twitter: false,
   };
 
-  constructor(private postService: PostService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private postService: PostService,
+  ) {}
 
   ngOnInit() {
-    if (this.post.linkedin) {
-      this.tabs.push('LinkedIn');
+    const id = this.route.snapshot.params['id'];
+    if (id) {
+      this.postService.getPost(id).subscribe((post) => {
+        this.post = post;
+        this.post.id = id;
+        if (this.post.linkedin) {
+          this.tabs.push('LinkedIn');
+        }
+        if (this.post.instagram) {
+          this.tabs.push('Instagram');
+        }
+        if (this.post.twitter) {
+          this.tabs.push('X/Twitter');
+        }
+        this.switchTab(this.tabs[0]);
+      });
     }
-    if (this.post.instagram) {
-      this.tabs.push('Instagram');
-    }
-    if (this.post.twitter) {
-      this.tabs.push('X/Twitter');
-    }
-    this.switchTab(this.tabs[0]);
   }
 
   switchTab(tab: string) {
@@ -64,7 +74,7 @@ export class PostComponent implements OnInit {
   }
 
   backToGeneratePage() {
-    this.back.emit();
+    this.router.navigate(['/post-form']);
   }
 
   backToGeneratedPostPage() {

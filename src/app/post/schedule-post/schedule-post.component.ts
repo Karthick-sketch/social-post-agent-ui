@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import {Router} from "@angular/router";
 import { PostModel } from '../model/post.model';
 import { PostService } from '../post.service';
 import { ScheduleModel } from '../model/schedule.model';
@@ -16,15 +17,24 @@ export class SchedulePostComponent implements OnInit {
 
   @Output() back = new EventEmitter<void>();
 
-  schedule = new ScheduleModel();
+  schedule!: ScheduleModel;
+
   platforms: Platform[] = [];
 
-  constructor(private postService: PostService) {}
+  constructor(private router: Router, private postService: PostService) {}
 
   ngOnInit() {
     this.postService
-      .getPlatforms(this.post.id_)
+      .getPlatforms(this.post.id)
       .subscribe((platforms) => (this.platforms = platforms));
+    this.postService.getSchedule(this.post.id).subscribe({
+      next: (schedule) => (this.schedule = schedule),
+      error: (err) => {
+        if (err.status === 404) {
+          this.schedule = new ScheduleModel();
+        }
+      },
+    });
   }
 
   toPlatformString() {
@@ -48,6 +58,8 @@ export class SchedulePostComponent implements OnInit {
   }
 
   schedulePost() {
-    this.postService.schedulePost(this.post.id_, this.schedule).subscribe();
+    this.postService.schedulePost(this.post.id, this.schedule).subscribe(() => {
+      this.router.navigate(['/post/' + this.post.id]);
+    });
   }
 }

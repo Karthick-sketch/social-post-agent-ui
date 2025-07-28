@@ -1,19 +1,18 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { GeneratePostModel } from '../model/generate-post.model';
 import { PostModel } from '../model/post.model';
 import { PostService } from '../post.service';
 import { Platform } from '../enum/platform.enum';
-import { PostComponent } from '../post-form/post-form.component';
 
 @Component({
   selector: 'app-generate-post-form',
   templateUrl: './generate-post-form.component.html',
   styleUrl: './generate-post-form.component.css',
-  imports: [FormsModule, PostComponent],
+  imports: [FormsModule],
 })
 export class GeneratePostFormComponent {
-  postGenerated = false;
   platform: Platform = Platform.LINKEDIN;
   post = new PostModel();
   generatePostModel = new GeneratePostModel();
@@ -33,7 +32,7 @@ export class GeneratePostFormComponent {
     { value: 'witty', label: 'Witty' },
   ];
 
-  constructor(private postService: PostService) {}
+  constructor(private router: Router, private postService: PostService) {}
 
   generatePost() {
     this.generatePostModel.platforms = [this.platform];
@@ -47,14 +46,10 @@ export class GeneratePostFormComponent {
         .generatePost(this.generatePostModel)
         .subscribe((postModel: PostModel) => {
           this.post = postModel;
-          this.postGenerated = true;
+          this.router.navigate(['/post-form/' + postModel.id]);
         });
     } else {
       console.log(this.generatePostModel);
     }
-  }
-
-  backToGeneratePost() {
-    this.postGenerated = false;
   }
 }

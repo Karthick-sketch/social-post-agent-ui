@@ -18,34 +18,42 @@ export class PostService {
 
   generatePost(generatePost: GeneratePostModel) {
     return this.http.post<PostModel>(
-      `${this.basePath}/generate-post`,
+      `${this.basePath}/generate`,
       generatePost,
     );
   }
 
-  savePost(post: PostModel) {
-    return this.http.put<PostModel>(`${this.basePath}/save-post`, post);
+  getPost(postId: string) {
+    return this.http.get<PostModel>(`${this.basePath}/${postId}`);
   }
 
-  savePostImages(postId: number, images: ImageModel[]) {
+  savePost(post: PostModel) {
+    return this.http.put<PostModel>(`${this.basePath}/save`, post);
+  }
+
+  savePostImages(postId: string, images: ImageModel[]) {
     return this.http.put<ImageModel[]>(
-      `${this.basePath}/save-post-images/${postId}`,
+      `${this.basePath}/${postId}/save-post-images`,
       images,
     );
   }
 
-  suggestImages(postId: number, pageSize: number) {
+  suggestImages(postId: string, pageSize: number, perPage: number) {
     return this.http.get<ImageModel[]>(
-      `${this.basePath}/suggest-images/${postId}?page=${pageSize}`,
+      `${this.basePath}/${postId}/suggest-images?page=${pageSize}&perPage=${perPage}`,
     );
   }
 
-  getPlatforms(postId: number) {
-    return this.http.get<Platform[]>(`${this.basePath}/platforms/${postId}`);
+  getPlatforms(postId: string) {
+    return this.http.get<Platform[]>(`${this.basePath}/${postId}/platforms`);
   }
 
-  schedulePost(postId: number, schedule: ScheduleModel) {
-    return this.http.post(`${this.basePath}/schedule/${postId}`, schedule);
+  getSchedule(postId: string) {
+    return this.http.get<ScheduleModel>(`${this.basePath}/${postId}/schedule`);
+  }
+
+  schedulePost(postId: string, schedule: ScheduleModel) {
+    return this.http.post(`${this.basePath}/${postId}/schedule`, schedule);
   }
 
   getPostList() {

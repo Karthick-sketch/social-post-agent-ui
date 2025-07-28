@@ -3,7 +3,7 @@
     [post]="post"
     (back)="backToGeneratedPostPage()"
   ></app-image-suggestion>
-} @else {
+} @else if (post) {
   <h3 class="section-header">Generated Content</h3>
   <div class="tabs-container">
     <div class="tabs">

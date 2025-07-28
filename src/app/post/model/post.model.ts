@@ -1,5 +1,5 @@
 export class PostModel {
-  id_!: number;
+  id!: string;
   linkedin!: string;
   instagram!: string;
   twitter!: string;

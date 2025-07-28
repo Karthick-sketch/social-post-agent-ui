@@ -3,7 +3,7 @@ import { ImageModel } from './image.model';
 import { Platform } from '../enum/platform.enum';
 
 export class PostPreviewModel {
-  id_!: number;
+  id!: number;
   post!: PostModel;
   images!: ImageModel[];
   schedule!: string;

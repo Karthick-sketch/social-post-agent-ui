@@ -2,9 +2,9 @@ import { Platform } from '../enum/platform.enum';
 import { Status } from '../enum/status.enum';
 
 export class PostListModel {
-  id_!: number;
+  id!: number;
   brief!: string;
   status!: Status;
-  scheduledDate!: string;
+  schedule!: string;
   platforms!: Platform[]
 }

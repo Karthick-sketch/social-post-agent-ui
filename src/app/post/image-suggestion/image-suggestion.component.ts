@@ -17,7 +17,8 @@ export class ImageSuggestionComponent implements OnInit {
   @Output() back = new EventEmitter<void>();
 
   isProceeded = false;
-  pageSize = 5;
+  pageSize = 1;
+  perPage = 5;
   images: ImageModel[] = [];
 
   constructor(private postService: PostService) {}
@@ -28,7 +29,7 @@ export class ImageSuggestionComponent implements OnInit {
 
   suggestImages() {
     this.postService
-      .suggestImages(this.post.id_, this.pageSize)
+      .suggestImages(this.post.id, this.pageSize, this.perPage)
       .subscribe((images) => (this.images = images));
   }
 
@@ -45,7 +46,7 @@ export class ImageSuggestionComponent implements OnInit {
   }
 
   savePostImages() {
-    this.postService.savePostImages(this.post.id_, this.images).subscribe();
+    this.postService.savePostImages(this.post.id, this.images).subscribe();
   }
 
   proceed() {
