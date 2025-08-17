@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {Router} from "@angular/router";
+import { Router } from '@angular/router';
 import { PostModel } from '../model/post.model';
 import { PostService } from '../post.service';
 import { ScheduleModel } from '../model/schedule.model';
@@ -21,7 +21,10 @@ export class SchedulePostComponent implements OnInit {
 
   platforms: Platform[] = [];
 
-  constructor(private router: Router, private postService: PostService) {}
+  constructor(
+    private router: Router,
+    private postService: PostService,
+  ) {}
 
   ngOnInit() {
     this.postService
@@ -40,7 +43,7 @@ export class SchedulePostComponent implements OnInit {
   toPlatformString() {
     return this.platforms
       .map((platform) =>
-        platform === Platform.TWITTER ? 'X/Twitter' : platform,
+        platform === Platform.X ? 'X/Twitter' : platform,
       )
       .join(', ');
   }

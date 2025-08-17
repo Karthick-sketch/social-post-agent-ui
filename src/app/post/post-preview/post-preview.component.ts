@@ -46,8 +46,8 @@ export class PostPreviewComponent implements OnInit {
       this.content = this.postPreview.post.linkedin;
     } else if (this.selectedPlatform === Platform.INSTAGRAM) {
       this.content = this.postPreview.post.instagram;
-    } else if (this.selectedPlatform === Platform.TWITTER) {
-      this.content = this.postPreview.post.twitter;
+    } else if (this.selectedPlatform === Platform.X) {
+      this.content = this.postPreview.post.x;
     }
   }
 

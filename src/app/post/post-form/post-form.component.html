@@ -29,18 +29,18 @@
     <label class="form-label">
       <textarea
         class="form-input post-textarea"
-        [class.hide]="!isActive('LinkedIn')"
+        [class.hide]="!isActive(platform.LINKEDIN)"
         [(ngModel)]="post.linkedin"
       ></textarea>
       <textarea
         class="form-input post-textarea"
-        [class.hide]="!isActive('Instagram')"
+        [class.hide]="!isActive(platform.INSTAGRAM)"
         [(ngModel)]="post.instagram"
       ></textarea>
       <textarea
         class="form-input post-textarea"
-        [class.hide]="!isActive('X/Twitter')"
-        [(ngModel)]="post.twitter"
+        [class.hide]="!isActive(platform.X)"
+        [(ngModel)]="post.x"
       ></textarea>
     </label>
   </div>

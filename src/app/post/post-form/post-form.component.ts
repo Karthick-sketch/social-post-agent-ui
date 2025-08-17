@@ -15,8 +15,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class PostFormComponent implements OnInit {
   post!: PostModel;
 
+  platform = Platform;
   isProceeded = false;
-  tabs: string[] = [];
+  tabs: Platform[] = [];
   platformTabs = {
     linkedin: false,
     instagram: false,
@@ -36,20 +37,20 @@ export class PostFormComponent implements OnInit {
         this.post = post;
         this.post.id = id;
         if (this.post.linkedin) {
-          this.tabs.push('LinkedIn');
+          this.tabs.push(Platform.LINKEDIN);
         }
         if (this.post.instagram) {
-          this.tabs.push('Instagram');
+          this.tabs.push(Platform.INSTAGRAM);
         }
-        if (this.post.twitter) {
-          this.tabs.push('X/Twitter');
+        if (this.post.x) {
+          this.tabs.push(Platform.X);
         }
         this.switchTab(this.tabs[0]);
       });
     }
   }
 
-  switchTab(tab: string) {
+  switchTab(tab: Platform) {
     this.platformTabs.linkedin = false;
     this.platformTabs.instagram = false;
     this.platformTabs.twitter = false;
@@ -57,17 +58,17 @@ export class PostFormComponent implements OnInit {
       this.platformTabs.linkedin = true;
     } else if (tab === Platform.INSTAGRAM) {
       this.platformTabs.instagram = true;
-    } else if (tab === 'X/Twitter') {
+    } else if (tab === Platform.X) {
       this.platformTabs.twitter = true;
     }
   }
 
-  isActive(tab: string) {
+  isActive(tab: Platform) {
     if (tab === Platform.LINKEDIN) {
       return this.platformTabs.linkedin;
     } else if (tab === Platform.INSTAGRAM) {
       return this.platformTabs.instagram;
-    } else if (tab === 'X/Twitter') {
+    } else if (tab === Platform.X) {
       return this.platformTabs.twitter;
     }
     return false;
