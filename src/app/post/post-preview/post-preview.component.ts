@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { DatePipe, NgClass } from '@angular/common';
 import { PostService } from '../post.service';
 import { PostPreviewModel } from '../model/post-preview.model';
-import { Platform } from '../enum/platform.enum';
 
 @Component({
   selector: 'app-post-list',
@@ -13,9 +12,9 @@ import { Platform } from '../enum/platform.enum';
 })
 export class PostPreviewComponent implements OnInit {
   content = '';
+  selectedPlatform = '';
 
   postPreview!: PostPreviewModel;
-  selectedPlatform!: Platform;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,21 +31,21 @@ export class PostPreviewComponent implements OnInit {
     }
   }
 
-  switchTab(platform: Platform) {
+  switchTab(platform: string) {
     this.selectedPlatform = platform;
     this.setContent();
   }
 
-  isActive(platform: Platform) {
+  isActive(platform: string) {
     return this.selectedPlatform === platform;
   }
 
   setContent() {
-    if (this.selectedPlatform === Platform.LINKEDIN) {
+    if (this.selectedPlatform === "LinkedIn") {
       this.content = this.postPreview.post.linkedin;
-    } else if (this.selectedPlatform === Platform.INSTAGRAM) {
+    } else if (this.selectedPlatform === "Instagram") {
       this.content = this.postPreview.post.instagram;
-    } else if (this.selectedPlatform === Platform.X) {
+    } else if (this.selectedPlatform === "X/Twitter") {
       this.content = this.postPreview.post.x;
     }
   }

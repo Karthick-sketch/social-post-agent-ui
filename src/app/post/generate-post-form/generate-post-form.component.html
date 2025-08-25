@@ -23,11 +23,11 @@
   <label class="form-label">
     <p class="form-label-text">Post Tone</p>
     <select
-      class="form-input form-input-regular form-select"
-      [(ngModel)]="generatePostModel.tone"
+      class="form-input form-input-regular form-select capitalize"
+      [(ngModel)]="tone"
     >
       @for (tone of tones; track $index) {
-        <option [value]="tone.value">{{ tone.label }}</option>
+        <option [value]="tone">{{ tone }}</option>
       }
     </select>
   </label>
@@ -35,14 +35,13 @@
 <div class="form-row">
   <label class="form-label">
     <p class="form-label-text">Social Platforms</p>
-    <select
-      class="form-input form-input-regular form-select"
-      [(ngModel)]="platform"
-    >
-      @for (platform of platforms; track $index) {
-        <option [value]="platform.value">{{ platform.label }}</option>
-      }
-    </select>
+    <ng-multiselect-dropdown
+      [class]="'capitalize'"
+      [placeholder]="'Select Platforms'"
+      [settings]="dropdownSettings"
+      [data]="platforms"
+      [(ngModel)]="selectedPlatforms"
+    ></ng-multiselect-dropdown>
   </label>
 </div>
 <div class="button-container-right">

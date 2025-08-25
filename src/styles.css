@@ -13,3 +13,30 @@ body {
 .hide {
   display: none !important;
 }
+
+/* Customizing the dropdown button */
+.multiselect-dropdown .dropdown-btn {
+  padding: 12px 16px !important;
+  color: #60758a !important;
+  background-color: white !important;
+  border: 1px solid #dbe0e6 !important;
+  border-radius: 8px !important;
+}
+
+/* Customizing the dropdown list items */
+.multiselect-dropdown .dropdown-list {
+  background: white !important;
+}
+
+/* Changing selected item appearance */
+.multiselect-dropdown .selected-item {
+  background: #dce8f3 !important;
+  color: black !important;
+  border-color: transparent !important;
+  border-radius: 4px !important;
+}
+
+/* Changing caret button position */
+.multiselect-dropdown .dropdown-multiselect__caret {
+  margin-top: 7px !important;
+}

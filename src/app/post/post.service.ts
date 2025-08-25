@@ -4,7 +4,6 @@ import { PostModel } from './model/post.model';
 import { GeneratePostModel } from './model/generate-post.model';
 import { ImageModel } from './model/image.model';
 import { ScheduleModel } from './model/schedule.model';
-import { Platform } from './enum/platform.enum';
 import { PostListModel } from './model/post-list.model';
 import { PostPreviewModel } from './model/post-preview.model';
 
@@ -15,6 +14,10 @@ export class PostService {
   private basePath = '/post';
 
   constructor(private http: HttpClient) {}
+
+  getSocialAccounts() {
+    return this.http.get<string[]>(`${this.basePath}/accounts`);
+  }
 
   generatePost(generatePost: GeneratePostModel) {
     return this.http.post<PostModel>(
@@ -45,7 +48,7 @@ export class PostService {
   }
 
   getPlatforms(postId: string) {
-    return this.http.get<Platform[]>(`${this.basePath}/${postId}/platforms`);
+    return this.http.get<string[]>(`${this.basePath}/${postId}/platforms`);
   }
 
   getSchedule(postId: string) {

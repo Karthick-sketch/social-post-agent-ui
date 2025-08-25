@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { PostModel } from '../model/post.model';
 import { PostService } from '../post.service';
 import { ScheduleModel } from '../model/schedule.model';
-import { Platform } from '../enum/platform.enum';
 
 @Component({
   selector: 'app-schedule-post',
@@ -19,7 +18,7 @@ export class SchedulePostComponent implements OnInit {
 
   schedule!: ScheduleModel;
 
-  platforms: Platform[] = [];
+  platforms: string[] = [];
 
   constructor(
     private router: Router,
@@ -43,7 +42,7 @@ export class SchedulePostComponent implements OnInit {
   toPlatformString() {
     return this.platforms
       .map((platform) =>
-        platform === Platform.X ? 'X/Twitter' : platform,
+        platform === "twitter" ? 'X/Twitter' : platform,
       )
       .join(', ');
   }

@@ -1,41 +1,69 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GeneratePostModel } from '../model/generate-post.model';
 import { PostModel } from '../model/post.model';
 import { PostService } from '../post.service';
-import { Platform } from '../enum/platform.enum';
+import {
+  IDropdownSettings,
+  NgMultiSelectDropDownModule,
+} from 'ng-multiselect-dropdown';
+
+type Dropdown = {
+  label: string;
+  value: string;
+};
 
 @Component({
   selector: 'app-generate-post-form',
   templateUrl: './generate-post-form.component.html',
   styleUrl: './generate-post-form.component.css',
-  imports: [FormsModule],
+  imports: [FormsModule, NgMultiSelectDropDownModule],
 })
-export class GeneratePostFormComponent {
-  platform: Platform = Platform.LINKEDIN;
+export class GeneratePostFormComponent implements OnInit {
   post = new PostModel();
   generatePostModel = new GeneratePostModel();
 
-  platforms = [
-    { value: 'LinkedIn', label: 'LinkedIn' },
-    { value: 'Instagram', label: 'Instagram' },
-    { value: 'Twitter', label: 'X/Twitter' },
-  ];
+  platforms: Dropdown[] = [];
+  selectedPlatforms: Dropdown[] = [];
+
+  tone = 'professional';
   tones = [
-    { value: 'professional', label: 'Professional' },
-    { value: 'promotional', label: 'Promotional' },
-    { value: 'informative', label: 'Informative' },
-    { value: 'casual', label: 'Casual' },
-    { value: 'friendly', label: 'Friendly' },
-    { value: 'humorous', label: 'Humorous' },
-    { value: 'witty', label: 'Witty' },
+    'professional',
+    'promotional',
+    'informative',
+    'casual',
+    'friendly',
+    'humorous',
+    'witty',
   ];
 
-  constructor(private router: Router, private postService: PostService) {}
+  dropdownSettings: IDropdownSettings = {
+    singleSelection: false,
+    idField: 'value',
+    textField: 'label',
+    enableCheckAll: false,
+    allowSearchFilter: true,
+  };
+
+  constructor(
+    private router: Router,
+    private postService: PostService,
+  ) {}
+
+  ngOnInit() {
+    this.postService.getSocialAccounts().subscribe((accounts) => {
+      this.platforms = accounts.map(account => {
+        return { 'label': account, 'value': account}
+      });
+    });
+  }
 
   generatePost() {
-    this.generatePostModel.platforms = [this.platform];
+    this.generatePostModel.platforms = this.selectedPlatforms.map(
+      (platform) => platform.value,
+    );
+    this.generatePostModel.tone = this.tone;
     if (
       this.generatePostModel.brief &&
       this.generatePostModel.platforms.length &&
