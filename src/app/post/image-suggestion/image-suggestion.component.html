@@ -1,7 +1,22 @@
 @if (isProceeded) {
-  <app-schedule-post [post]="post" (back)="backToImagesSuggestPage()"></app-schedule-post>
+  <app-schedule-post
+    [post]="post"
+    (back)="backToImagesSuggestPage()"
+  ></app-schedule-post>
 } @else {
   <h3 class="section-header">Image Suggestions</h3>
+  <div class="form-row">
+    <label class="form-label">
+      <input
+        placeholder="Enter Images query"
+        class="form-input form-input-regular"
+        [(ngModel)]="query"
+      />
+    </label>
+    <button class="button button-primary" (click)="suggestImages()">
+      <span class="button-text">Suggest</span>
+    </button>
+  </div>
   <div class="image-grid">
     @for (image of images; track image.id) {
       <div class="image-item">

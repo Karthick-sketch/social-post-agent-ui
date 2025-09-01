@@ -16,6 +16,7 @@ export class ImageSuggestionComponent implements OnInit {
 
   @Output() back = new EventEmitter<void>();
 
+  query = '';
   isProceeded = false;
   pageSize = 1;
   perPage = 5;
@@ -24,12 +25,19 @@ export class ImageSuggestionComponent implements OnInit {
   constructor(private postService: PostService) {}
 
   ngOnInit() {
-    this.suggestImages();
+    this.suggestImagesPrompt();
+  }
+
+  suggestImagesPrompt() {
+    this.postService.suggestImagesPrompt(this.post.id).subscribe((model) => {
+      this.query = model.query;
+      this.suggestImages();
+    });
   }
 
   suggestImages() {
     this.postService
-      .suggestImages(this.post.id, this.pageSize, this.perPage)
+      .suggestImages(this.post.id, this.query, this.pageSize, this.perPage)
       .subscribe((images) => (this.images = images));
   }
 

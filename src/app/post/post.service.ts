@@ -6,6 +6,7 @@ import { ImageModel } from './model/image.model';
 import { ScheduleModel } from './model/schedule.model';
 import { PostListModel } from './model/post-list.model';
 import { PostPreviewModel } from './model/post-preview.model';
+import { ImageSearchQueryModel } from './model/image-search-query.model';
 
 @Injectable({
   providedIn: 'root',
@@ -20,10 +21,7 @@ export class PostService {
   }
 
   generatePost(generatePost: GeneratePostModel) {
-    return this.http.post<PostModel>(
-      `${this.basePath}/generate`,
-      generatePost,
-    );
+    return this.http.post<PostModel>(`${this.basePath}/generate`, generatePost);
   }
 
   getPost(postId: string) {
@@ -41,9 +39,21 @@ export class PostService {
     );
   }
 
-  suggestImages(postId: string, pageSize: number, perPage: number) {
+  suggestImagesPrompt(postId: string) {
+    return this.http.get<ImageSearchQueryModel>(
+      `${this.basePath}/${postId}/suggest-images-query`,
+    );
+  }
+
+  suggestImages(
+    postId: string,
+    query: string,
+    pageSize: number,
+    perPage: number,
+  ) {
+    query = query.trim().replaceAll(' ', '%20');
     return this.http.get<ImageModel[]>(
-      `${this.basePath}/${postId}/suggest-images?page=${pageSize}&perPage=${perPage}`,
+      `${this.basePath}/${postId}/suggest-images?query=${query}&page=${pageSize}&perPage=${perPage}`,
     );
   }
 
